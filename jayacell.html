@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jaya Cell — Pulsa & Kuota</title>
+<style>
+:root{
+  --primary:#0077c8;
+  --primary-dark:#005a96;
+  --accent:#00b4db;
+  --wa:#25D366;
+  --bg:#f9fbff;
+  --card:#ffffff;
+  --text:#1e293b;
+  --muted:#64748b;
+  --radius:14px;
+  --shadow:0 8px 28px rgba(2,6,23,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+/* NAVBAR */
+header{
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  color:white;position:sticky;top:0;z-index:100;
+  box-shadow:var(--shadow);
+}
+header h1{font-size:20px;font-weight:700}
+.navmenu{display:flex;gap:20px}
+.navmenu a{color:white;text-decoration:none;font-weight:600;transition:.2s}
+.navmenu a:hover{opacity:.8}
+
+/* HERO */
+.hero{
+  background:linear-gradient(120deg,var(--primary),var(--accent));
+  color:white;
+  text-align:center;
+  padding:80px 20px;
+}
+.hero h2{font-size:34px;font-weight:800}
+.hero p{margin-top:12px;font-size:18px;opacity:.95}
+.hero .cta{margin-top:24px}
+.hero .cta a{
+  background:var(--wa);
+  padding:12px 20px;
+  border-radius:var(--radius);
+  color:white;font-weight:700;text-decoration:none;
+  box-shadow:0 8px 22px rgba(0,0,0,0.2);
+}
+
+/* WRAPPER */
+.wrap{max-width:1200px;margin:40px auto;padding:0 20px}
+
+/* SECTION TITLE */
+.section-title{font-size:24px;font-weight:800;margin-bottom:18px;color:var(--primary-dark)}
+
+/* OPERATOR FILTER */
+.operators{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.operators button{
+  background:var(--card);border:1px solid #e2e8f0;padding:10px 16px;
+  border-radius:var(--radius);cursor:pointer;font-weight:700;
+  transition:.2s;
+}
+.operators button.active, .operators button:hover{
+  background:var(--primary);color:white;border-color:var(--primary);
+}
+
+/* INPUT NOMOR */
+.nomor-box{
+  margin:20px 0;padding:16px;background:var(--card);
+  border-radius:var(--radius);box-shadow:var(--shadow);
+  display:flex;gap:10px;align-items:center;
+}
+.nomor-box input{
+  flex:1;padding:10px 14px;border:1px solid #cbd5e1;
+  border-radius:var(--radius);font-size:15px;
+}
+.nomor-box input:focus{outline:2px solid var(--primary);border-color:var(--primary)}
+
+/* PRODUCT GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.card{
+  background:var(--card);padding:18px;border-radius:var(--radius);
+  box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;
+  transition:.2s;
+}
+.card:hover{transform:translateY(-6px)}
+.card h3{font-size:18px;font-weight:700}
+.card .price{color:var(--primary-dark);font-weight:800;font-size:16px}
+.card button{
+  margin-top:auto;
+  background:var(--primary);color:white;
+  border:0;border-radius:var(--radius);padding:10px;
+  font-weight:700;cursor:pointer;transition:.2s;
+}
+.card button:hover{background:var(--primary-dark)}
+
+/* INFO SECTIONS */
+.info{background:white;padding:24px;border-radius:var(--radius);box-shadow:var(--shadow);margin-top:40px}
+.info h4{color:var(--primary-dark);margin-bottom:10px}
+.info p, .info ol{color:var(--muted);font-size:15px}
+
+/* FOOTER */
+footer{
+  margin-top:50px;
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  color:white;text-align:center;padding:24px;
+}
+footer .socials{margin-top:10px;display:flex;gap:16px;justify-content:center}
+footer a{color:white;text-decoration:none;font-size:18px}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+  <h1>Jaya Cell</h1>
+  <nav class="navmenu">
+    <a href="#">Home</a>
+    <a href="#produk">Produk</a>
+    <a href="#tentang">Tentang Kami</a>
+    <a href="#syarat">Syarat</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h2>Isi Pulsa & Kuota Cepat</h2>
+  <p>Semua operator, mulai dari Rp5.000 – Rp100.000, langsung lewat WhatsApp.</p>
+  <div class="cta">
+    <a href="https://api.whatsapp.com/send/?phone=%2B6281910958623&text=Halo%20Jaya%20Cell%2C%20saya%20ingin%20beli%20pulsa">Pesan via WhatsApp</a>
+  </div>
+</section>
+
+<!-- PRODUK -->
+<main class="wrap" id="produk">
+  <h3 class="section-title">Pilih Operator</h3>
+  <div class="operators" id="opFilter"></div>
+
+  <!-- INPUT NOMOR -->
+  <div class="nomor-box">
+    <label for="nomor">Nomor Tujuan:</label>
+    <input type="tel" id="nomor" placeholder="contoh: 081234567890">
+  </div>
+
+  <h3 class="section-title">Daftar Pulsa</h3>
+  <div class="grid" id="grid"></div>
+
+  <!-- INFO -->
+  <div class="info" id="tentang">
+    <h4>Tentang Kami</h4>
+    <p>Jaya Cell melayani top-up pulsa, kuota internet, dan voucher game untuk semua operator di Indonesia. Transaksi cepat, harga bersahabat, dan layanan pelanggan ramah 24/7 melalui WhatsApp.</p>
+  </div>
+
+  <div class="info" id="syarat">
+    <h4>Syarat & Ketentuan</h4>
+    <ol>
+      <li>Pastikan nomor tujuan sudah benar.</li>
+      <li>Transaksi yang sudah diproses tidak dapat dibatalkan.</li>
+      <li>Harga dapat berubah sewaktu-waktu sesuai ketentuan operator.</li>
+    </ol>
+  </div>
+
+  <div class="info" id="kontak">
+    <h4>Kontak</h4>
+    <p>WhatsApp: <a href="https://api.whatsapp.com/send/?phone=%2B6281910958623" target="_blank">+62 819-1095-8623</a></p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2025 Jaya Cell — Isi Pulsa & Kuota Instan</div>
+  <div class="socials">
+    <a href="#">🌐</a>
+    <a href="#">📘</a>
+    <a href="https://api.whatsapp.com/send/?phone=%2B6281910958623">💬</a>
+  </div>
+</footer>
+
+<script>
+/* Operator */
+const operators = [
+  {id:"all", name:"Semua"},
+  {id:"telkomsel", name:"Telkomsel"},
+  {id:"xl", name:"XL"},
+  {id:"axis", name:"Axis"},
+  {id:"indosat", name:"Indosat"},
+  {id:"tri", name:"Tri"},
+  {id:"smartfren", name:"Smartfren"}
+];
+
+/* Produk pulsa 5k – 100k */
+const products = [];
+operators.filter(op=>op.id!=="all").forEach(op=>{
+  [5000,10000,20000,25000,30000,50000,100000].forEach(n=>{
+    products.push({
+      op:op.id,
+      title:`Pulsa ${op.name} Rp${n.toLocaleString("id-ID")}`,
+      nominal:n,
+      price:n+2000  // tambahkan 2000 setiap transaksi
+    });
+  });
+});
+
+const opFilter = document.getElementById("opFilter");
+const grid = document.getElementById("grid");
+let activeOp="all";
+
+/* Render operator filter */
+operators.forEach(op=>{
+  const btn=document.createElement("button");
+  btn.textContent=op.name;
+  btn.onclick=()=>{
+    activeOp=op.id;
+    document.querySelectorAll(".operators button").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    renderGrid();
+  };
+  if(op.id==="all") btn.classList.add("active");
+  opFilter.appendChild(btn);
+});
+
+/* Render produk */
+function renderGrid(){
+  grid.innerHTML="";
+  products.filter(p=>activeOp==="all"||p.op===activeOp)
+  .forEach(p=>{
+    const c=document.createElement("div");
+    c.className="card";
+    c.innerHTML=`
+      <h3>${p.title}</h3>
+      <div class="price">Rp ${p.price.toLocaleString("id-ID")}</div>
+      <button onclick="order('${p.title}','${p.nominal}','${p.price}')">Beli via WhatsApp</button>
+    `;
+    grid.appendChild(c);
+  });
+}
+
+function order(title,nominal,price){
+  const nomor=document.getElementById("nomor").value.trim();
+  if(!nomor){
+    alert("Masukkan nomor tujuan terlebih dahulu!");
+    return;
+  }
+  const msg=`Halo Jaya Cell,%0ASaya ingin membeli:%0A${title}%0ANominal: Rp ${parseInt(nominal).toLocaleString("id-ID")}%0ANomor Tujuan: ${nomor}%0ATotal Bayar: Rp ${parseInt(price).toLocaleString("id-ID")}`;
+  window.open(`https://api.whatsapp.com/send/?phone=%2B6281910958623&text=${msg}`,"_blank");
+}
+
+renderGrid();
+</script>
+
+</body>
+</html>
